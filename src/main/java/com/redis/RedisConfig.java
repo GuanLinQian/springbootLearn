@@ -21,7 +21,6 @@ public class RedisConfig {
 
 
     @Bean
-
     @SuppressWarnings("all")
 
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {

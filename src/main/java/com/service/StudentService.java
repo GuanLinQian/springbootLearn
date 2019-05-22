@@ -14,7 +14,7 @@ import java.util.List;
  **/
 @Service
 public class StudentService {
-@Autowired
+
 
     public List<Student> getAllStus(){
 
