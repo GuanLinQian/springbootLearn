@@ -28,12 +28,12 @@ public class MyPointCut {
     String key=getkey(proceedingJoinPoint);
     if(!redisUtil.hasKey(key)){
             System.out.println("------------设置每页数据-----");
-          List  list= (List) proceedingJoinPoint.proceed();
-            redisUtil.lSet(key,list,20);
+          Object  object= proceedingJoinPoint.proceed();
+         redisUtil.set(key,object,20);
     }
 
 
-return redisUtil.lGet(key,0,-1);
+return redisUtil.get(key);
 }
 
 

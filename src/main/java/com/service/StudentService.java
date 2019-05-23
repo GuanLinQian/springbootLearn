@@ -20,18 +20,17 @@ import java.util.List;
 public class StudentService {
 @Autowired
 private StudentMapper studentMapper;
-@Autowired
-private Page pageBean;
-    public List<Student> getAllStus(Integer page,Integer rows){
+
+    public PageInfo getAllStus(Integer page,Integer rows){
 
         PageHelper.startPage(page,rows);
+
         PageInfo pageInfo=new PageInfo(studentMapper.getAllStusM());
+
         System.out.println("执行service--------------"+pageInfo);
 
-         pageBean.setRows(rows);
-         pageBean.setTotal(pageInfo.getTotal());
-          pageBean.setPage(page);
-        return  pageInfo.getList();
+
+        return  pageInfo;
 
     }
     public  boolean delStu(Integer id){

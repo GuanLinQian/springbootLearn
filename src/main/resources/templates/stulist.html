@@ -19,7 +19,7 @@
 
 
 
-    <tr th:each="stu :  ${list}">
+    <tr th:each="stu :  ${pageInfo.list}">
         <td th:text="${stu.id}"></td>
         <td th:text="${stu.studentName}"></td>
         <td th:text="${stu.sex}"></td>
@@ -28,7 +28,7 @@
 
 
 </table>
-<a th:href="@{/show(page=${pageBean.prePage},rows=3)}">上一页</a>     <a th:href="@{/show(page=${pageBean.nextPage},rows=3)}">下一页</a>
+<a th:href="@{/show(page=${pageInfo.prePage},rows=3)}">上一页</a>     <a th:href="@{/show(page=${pageInfo.nextPage},rows=3)}">下一页</a>
 
 </body>
 </html>

@@ -26,18 +26,18 @@ public class TestController {
 private HttpServletRequest request;
  @Autowired
     private StudentService studentService;
-@Autowired
-  private Page pageBean;
+
     @RequestMapping("show")
     public  String test(Integer page,Integer rows){
         System.out.println("存入list集合-------------"+page+rows);
-     if(pageBean!=null){
-         pageBean.setPage(page);
-     }
-        request.setAttribute("list",studentService.getAllStus(page, rows));
 
-        System.out.println(pageBean);
-        request.setAttribute("pageBean",pageBean);
+        PageInfo pageInfo=studentService.getAllStus(page,rows);
+        /* if(pageInfo!=null){
+         pageInfo.setPages(page);
+        }*/
+        request.setAttribute("pageInfo",studentService.getAllStus(page, rows));
+
+
         return "stulist";
     }
     @RequestMapping("del")
