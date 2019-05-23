@@ -23,11 +23,12 @@
         <td th:text="${stu.id}"></td>
         <td th:text="${stu.studentName}"></td>
         <td th:text="${stu.sex}"></td>
+        <td><a th:href="@{/del(id=${stu.id})}">删除</a></td>
     </tr>
 
 
 </table>
-
+<a th:href="@{/show(page=${pageBean.prePage},rows=3)}">上一页</a>     <a th:href="@{/show(page=${pageBean.nextPage},rows=3)}">下一页</a>
 
 </body>
 </html>

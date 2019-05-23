@@ -143,6 +143,13 @@ public final class RedisUtil {
         }
 
     }
+/*
+模糊删除
+ */
+    public void dimDel(String dim){
+        redisTemplate.delete(redisTemplate.keys(dim));
+
+    }
 
 
         // ============================String=============================

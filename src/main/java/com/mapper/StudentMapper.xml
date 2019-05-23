@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.StudentMapper" >
+<select id="getAllStusM" resultType="student" >
+select*from student
+</select>
+
+
+    <delete id="delStuM" parameterType="int">
+        delete from student where id=#{id}
+    </delete>
+
+</mapper>

@@ -1,5 +1,6 @@
 package com.pointCut;
 
+import com.github.pagehelper.PageInfo;
 import com.redis.RedisUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -11,10 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * 时间:18:30
- * 作者：Maibenben
- **/
+
 @Aspect
 @Component
 public class MyPointCut {
@@ -26,13 +24,24 @@ public class MyPointCut {
 }
 @Around("pointCut1()")
     public Object test(ProceedingJoinPoint proceedingJoinPoint)throws  Throwable{
-    String methodName=proceedingJoinPoint.getSignature().getName();
-    if(!redisUtil.hasKey(methodName)){
-            System.out.println("------------设置list-----");
-            List<Object> list = (List<Object>) proceedingJoinPoint.proceed();
-            redisUtil.lSet(methodName,list,10);
+
+    String key=getkey(proceedingJoinPoint);
+    if(!redisUtil.hasKey(key)){
+            System.out.println("------------设置每页数据-----");
+          List  list= (List) proceedingJoinPoint.proceed();
+            redisUtil.lSet(key,list,20);
     }
 
-return redisUtil.lGet(methodName,0,-1);
+
+return redisUtil.lGet(key,0,-1);
+}
+
+
+public  String getkey(ProceedingJoinPoint proceedingJoinPoint){
+    Object []args= proceedingJoinPoint.getArgs();
+    String methodName=proceedingJoinPoint.getSignature().getName();
+
+return  methodName+"_"+args[0]+"_"+args[1];
 }
 }
+
