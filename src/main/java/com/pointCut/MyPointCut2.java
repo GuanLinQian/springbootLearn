@@ -25,7 +25,7 @@ public class MyPointCut2 {
 @AfterReturning("pointCut1()")
     public void test(JoinPoint joinPoint){
       //  String dimKey=joinPoint.getSignature().getName();
-        redisUtil.dimDel("getAllStus*");
+        redisUtil.dimDel("*Stu*");
 
 }
 
